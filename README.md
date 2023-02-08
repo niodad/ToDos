@@ -2,9 +2,10 @@
 
 ## Introduction
 
-This is a  Clean Code minimal API built using Mediatr and Cosmos DB as the database. The API is designed to demonstrate how to write clean, maintainable and scalable code.
+This is a  Clean Code minimal API  using Mediatr and Cosmos DB as the database. The API is designed to demonstrate how to write clean, maintainable and scalable code.
 
 ## Requirements
+
 - .NET 7
 - Mediatr 11
 - Cosmos DB
@@ -18,7 +19,7 @@ This is a  Clean Code minimal API built using Mediatr and Cosmos DB as the datab
  
 2. Change the directory to the cloned repository:
 
-        cd clean-code-api
+        cd ToDos
 
 3. Restore the packages:
 
@@ -34,6 +35,7 @@ This is a  Clean Code minimal API built using Mediatr and Cosmos DB as the datab
 5. Run the API:
 
 ## Buy me a coffee or a beer
+
     If you found this repository helpful, you can buy me a coffee or a beer.
 
     Bitcoin address: 1795Eztk4vq6YSUA5LYboRH6NRTUNjWkMu

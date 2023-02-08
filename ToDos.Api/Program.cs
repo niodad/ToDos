@@ -1,8 +1,4 @@
-using Gitos.Domain.Repository;
-using Gitos.MongoDB.Data;
-using MediatR;
 using ToDos.Api.Extensions;
-using ToDos.Api.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,13 +6,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddMediatR(typeof(Program));
-builder.Services.AddAutoMapper(typeof(Program));
-builder.Services.AddScoped(typeof(IRepository<,>), typeof(CosmosDbRepository<,>));
+
+builder.Services.AddToDosServices();
 
 var app = builder.Build();
 
-app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.AddToDosMiddleware();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

@@ -3,8 +3,9 @@ using ToDos.Infrastructure.Data;
 
 namespace ToDos.Api.Queries
 {
-    public class GetToDosQuery : IRequest<IEnumerable<ToDo>>
+    public class GetToDoByIdQuery : IRequest<ToDo>
     {
+        public Guid Id { get; set; }
 
     }
 }

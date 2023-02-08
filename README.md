@@ -34,6 +34,8 @@ This is a  Clean Code minimal API  using Mediatr and Cosmos DB as the database. 
 
 5. Run the API:
 
+        dotnet run
+
 ## Buy me a coffee or a beer
 
     If you found this repository helpful, you can buy me a coffee or a beer.

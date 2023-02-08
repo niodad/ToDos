@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using Gitos.Domain.Repository;
+using Gitos.MongoDB.Data;
 using MediatR;
-using System;
 using ToDos.Api.Commands;
+using ToDos.Api.DTO;
+using ToDos.Api.Middleware;
 using ToDos.Api.Queries;
 using ToDos.Infrastructure.Data;
 
@@ -11,26 +14,46 @@ namespace ToDos.Api.Extensions
     {
         public static void MapToDoRoutes(this IEndpointRouteBuilder app)
         {
-            app.MapPost("todos/create", async (IMediator mediator, IMapper mapper, ToDo todo) =>
+            var group = app.MapGroup("/api/todos/");
+
+            group.MapPost("create", async (IMediator mediator, IMapper mapper, CreateToDo todo) =>
             {
                 return await mediator.Send(mapper.Map<SaveToDoCommand>(todo));
             });
 
-            app.MapPut("todos/update", async (IMediator mediator, IMapper mapper, ToDo todo) =>
+            group.MapPut("update", async (IMediator mediator, IMapper mapper, ToDo todo) =>
             {
                 return await mediator.Send(mapper.Map<SaveToDoCommand>(todo));
             });
 
-            app.MapDelete("todos/delete", async (IMediator mediator, IMapper mapper, Guid id) =>
+            group.MapDelete("delete", async (IMediator mediator, IMapper mapper, Guid id) =>
             {
                 return await mediator.Send(mapper.Map<DeleteToDoCommand>(id));
             });
 
-            app.MapGet("todos", async (IMediator _mediator) =>
+            group.MapGet("todos", async (IMediator _mediator) =>
             {
                 return await _mediator.Send(new GetToDosQuery());
             });
 
+            group.MapGet("{id}", async (IMediator _mediator, IMapper mapper, Guid id) =>
+            {
+                return await _mediator.Send(mapper.Map<GetToDoByIdQuery>(id));
+            });
+
+
+        }
+
+        public static void AddToDosServices(this IServiceCollection services)
+        {
+            services.AddMediatR(typeof(Program));
+            services.AddAutoMapper(typeof(Program));
+            services.AddScoped(typeof(IRepository<,>), typeof(CosmosDbRepository<,>));
+        }
+
+        public static void AddToDosMiddleware(this IApplicationBuilder app)
+        {
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
         }
     }
 }

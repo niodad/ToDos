@@ -1,9 +1,10 @@
 ﻿using MediatR;
-using ToDos.Infrastructure.Data;
+using ToDos.Infrastructure.Data.Entities;
 
 namespace ToDos.Api.Commands
 {
-    public class SaveToDoCommand : ToDo, IRequest<ToDo>
+    public class SaveToDoCommand : ToDo, IRequest<Infrastructure.Data.Entities.ToDo>
     {
+
     }
 }

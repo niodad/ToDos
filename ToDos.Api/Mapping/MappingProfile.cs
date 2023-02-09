@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using ToDos.Api.Commands;
-using ToDos.Api.DTO;
 using ToDos.Api.Queries;
-using ToDos.Infrastructure.Data;
+using ToDos.Infrastructure.Data.Entities;
 
-namespace ToDos.Api
+
+namespace ToDos.Api.Mapping
 {
     public class MappingProfile : Profile
     {

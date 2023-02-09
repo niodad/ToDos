@@ -1,4 +1,0 @@
-﻿namespace ToDos.Api.Commands
-{
-
-}

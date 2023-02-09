@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using ToDos.Infrastructure.Data;
+using ToDos.Infrastructure.Data.Entities;
 
 namespace ToDos.Api.Commands
 {

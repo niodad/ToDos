@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
 using Gitos.Domain.Repository;
-using Gitos.MongoDB.Data;
 using MediatR;
 using ToDos.Api.Commands;
-using ToDos.Api.DTO;
 using ToDos.Api.Middleware;
 using ToDos.Api.Queries;
-using ToDos.Infrastructure.Data;
+using ToDos.Infrastructure.Data.Cosmos;
+using ToDos.Infrastructure.Data.Entities;
 
 namespace ToDos.Api.Extensions
 {
@@ -31,7 +30,7 @@ namespace ToDos.Api.Extensions
                 return await mediator.Send(mapper.Map<DeleteToDoCommand>(id));
             });
 
-            group.MapGet("todos", async (IMediator _mediator) =>
+            group.MapGet("", async (IMediator _mediator) =>
             {
                 return await _mediator.Send(new GetToDosQuery());
             });
@@ -49,6 +48,10 @@ namespace ToDos.Api.Extensions
             services.AddMediatR(typeof(Program));
             services.AddAutoMapper(typeof(Program));
             services.AddScoped(typeof(IRepository<,>), typeof(CosmosDbRepository<,>));
+            //use inmemory database
+            //services.AddScoped(typeof(IRepository<,>), typeof(InmemoryRespository<,>));
+            //services.AddDbContext<ToDosDbContext>(opt => opt.UseInMemoryDatabase("TodoList"));
+            services.AddDatabaseDeveloperPageExceptionFilter();
         }
 
         public static void AddToDosMiddleware(this IApplicationBuilder app)

@@ -2,7 +2,7 @@
 using Gitos.Domain.Repository;
 using MediatR;
 using ToDos.Api.Commands;
-using ToDos.Infrastructure.Data;
+using ToDos.Infrastructure.Data.Entities;
 
 namespace ToDos.Api.Handlers
 {

@@ -4,7 +4,7 @@ using MongoDB.Driver;
 using System.Linq.Expressions;
 using ToDos.Domain.Interfaces;
 
-namespace Gitos.MongoDB.Data
+namespace ToDos.Infrastructure.Data.Cosmos
 {
     public class CosmosDbRepository<T, Id> : IRepository<T, Guid> where T : IBaseEntity<Guid>
     {
@@ -33,7 +33,7 @@ namespace Gitos.MongoDB.Data
         public async Task<T> DeleteAsync(Guid id)
         {
             _mongoCollection = _mongoDB.GetCollection<T>(typeof(T).Name);
-            return await _mongoCollection.FindOneAndDeleteAsync<T>(e => e.Id == id);
+            return await _mongoCollection.FindOneAndDeleteAsync(e => e.Id == id);
         }
         public async Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> filter)
         {

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is a  Clean Code minimal API  using Mediatr and Cosmos DB as the database. The API is designed to demonstrate how to write clean, maintainable and scalable code.
+This is a  Clean Code minimal API  using Mediatr and Cosmos DB as the database. The API is designed to demonstrate how to write clean, maintainable and scalable code. You can also use the Inmemmory DB with EF 7.
 
 ## Requirements
 
@@ -35,6 +35,14 @@ This is a  Clean Code minimal API  using Mediatr and Cosmos DB as the database. 
 5. Run the API:
 
         dotnet run
+
+6. Use EF Core In-Memory Database
+
+        Make this change in the Extension.cs file
+        //services.AddScoped(typeof(IRepository<,>), typeof(CosmosDbRepository<,>));
+        //Use EF Core In-Memory Databas
+        services.AddScoped(typeof(IRepository<,>), typeof(InmemoryRespository<,>));
+        services.AddDbContext<ToDosDbContext>(opt => opt.UseInMemoryDatabase("TodoList"));
 
 ## Buy me a coffee or a beer
 

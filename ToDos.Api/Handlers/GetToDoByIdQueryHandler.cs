@@ -1,7 +1,8 @@
 ﻿using Gitos.Domain.Repository;
 using MediatR;
 using ToDos.Api.Queries;
-using ToDos.Infrastructure.Data;
+using ToDos.Domain.Exceptions;
+using ToDos.Infrastructure.Data.Entities;
 
 namespace ToDos.Api.Handlers
 {
@@ -16,7 +17,8 @@ namespace ToDos.Api.Handlers
 
         public async Task<ToDo> Handle(GetToDoByIdQuery request, CancellationToken cancellationToken)
         {
-            return (await _repository.GetAsync(i => i.Id == request.Id)).First();
+            return (await _repository.GetAsync(i => i.Id == request.Id))
+                .FirstOrDefault() ?? throw new NotFoundException();
         }
     }
 }

@@ -35,6 +35,7 @@ namespace ToDos.Api.Middleware
             {
                 errorCode = "NotFound";
                 statusCode = HttpStatusCode.NotFound;
+                message = "Data could not be found.";
             }
             else if (exception is ArgumentException)
             {

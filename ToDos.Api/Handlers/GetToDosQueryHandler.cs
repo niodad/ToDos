@@ -16,7 +16,8 @@ namespace ToDos.Api.Handlers
 
         public async Task<IEnumerable<ToDo>> Handle(GetToDosQuery request, CancellationToken cancellationToken)
         {
-            return await _repository.GetAsync(i => true);
+            var result = await _repository.GetAsync(i => i.Email == request.Email);
+            return result.OrderBy(x => x.Date);
         }
     }
 }

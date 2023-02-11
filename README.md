@@ -38,7 +38,7 @@ This is a  Clean Code minimal API  using Mediatr and Cosmos DB as the database. 
 
 6. Use EF Core In-Memory Database
 
-        Make this change in the Extension.cs file
+        Make this change in the IServiceCollectionExtension.cs file
         //services.AddScoped(typeof(IRepository<,>), typeof(CosmosDbRepository<,>));
         //Use EF Core In-Memory Databas
         services.AddScoped(typeof(IRepository<,>), typeof(InmemoryRespository<,>));

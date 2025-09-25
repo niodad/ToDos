@@ -1,12 +1,12 @@
 ﻿using System.Linq.Expressions;
 using ToDos.Domain.Interfaces;
 
-namespace Gitos.Domain.Repository
+namespace ToDos.Domain.Interfaces
 {
-    public interface IRepository<T, Id> where T : IBaseEntity<Id>
+    public interface IRepository<T, TId> where T : IBaseEntity<TId>
     {
         Task<IEnumerable<T>> GetAsync(Expression<Func<T, bool>> filter);
         Task<T> SaveAsync(T entity);
-        Task<T> DeleteAsync(Id id);
+        Task<T> DeleteAsync(TId id);
     }
 }

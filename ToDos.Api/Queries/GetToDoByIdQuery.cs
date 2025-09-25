@@ -5,14 +5,12 @@ namespace ToDos.Api.Queries
 {
     public class GetToDoByIdQuery : IRequest<ToDo>
     {
-        public GetToDoByIdQuery(Guid id, string email)
+        public GetToDoByIdQuery(Guid id)
         {
             Id = id;
-            Email = email;
         }
 
         public Guid Id { get; set; }
-        public string Email { get; set; } = default!;
     }
 }
 

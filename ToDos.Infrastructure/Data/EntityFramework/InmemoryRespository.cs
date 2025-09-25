@@ -1,7 +1,6 @@
-﻿using Gitos.Domain.Repository;
+﻿using ToDos.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
-using ToDos.Domain.Interfaces;
 
 namespace ToDos.Infrastructure.Data.EntityFramework
 {

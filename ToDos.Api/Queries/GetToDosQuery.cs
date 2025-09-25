@@ -11,7 +11,6 @@ namespace ToDos.Api.Queries
         }
 
         public string Email { get; set; } = default!;
-
     }
 }
 

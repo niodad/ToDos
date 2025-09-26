@@ -56,7 +56,7 @@ namespace ToDos.Infrastructure.Data.Cosmos
                 }
                 else
                 {
-                    var result = await _mongoCollection.ReplaceOneAsync(e => e.Id.Equals(entity.Id), entity);
+                    var result = await _mongoCollection.ReplaceOneAsync(e => e.Id!.Equals(entity.Id), entity);
                     _logger.LogDebug("Updated entity with ID: {Id}, Matched: {MatchedCount}", entity.Id, result.MatchedCount);
                 }
                 return entity;
@@ -72,7 +72,7 @@ namespace ToDos.Infrastructure.Data.Cosmos
             try
             {
                 _mongoCollection = _mongoDB.GetCollection<T>(typeof(T).Name);
-                var result = await _mongoCollection.FindOneAndDeleteAsync(e => e.Id.Equals(id));
+                var result = await _mongoCollection.FindOneAndDeleteAsync(e => e.Id!.Equals(id));
                 _logger.LogDebug("Deleted entity with ID: {Id}", id);
                 return result;
             }

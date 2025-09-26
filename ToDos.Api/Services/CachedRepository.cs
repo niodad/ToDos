@@ -58,7 +58,7 @@ namespace ToDos.Api.Services
                 _logger.LogDebug("Removed entity from cache with key: {CacheKey}", cacheKey);
             }
             
-            return result;
+            return result!;
         }
 
         public async Task<T?> GetByIdAsync(TId id)
@@ -75,7 +75,7 @@ namespace ToDos.Api.Services
             _logger.LogDebug("Cache miss for entity with key: {CacheKey}", cacheKey);
             
             // Get from repository and cache it
-            var entities = await _repository.GetAsync(e => e.Id.Equals(id));
+            var entities = await _repository.GetAsync(e => e.Id!.Equals(id));
             var entity = entities.FirstOrDefault();
             
             if (entity != null)
